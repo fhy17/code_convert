@@ -51,7 +51,7 @@ int GbkToUtf8(char *str_str, size_t src_len, char *dst_str, size_t dst_len) {
     memset(dst_str, 0, dst_len);
     if (iconv(cd, pin, &src_len, pout, &dst_len) == -1) return -1;
     iconv_close(cd);
-    *pout = '\0';
+    **pout = '\0';
 
     return 0;
 }
@@ -66,7 +66,7 @@ int Utf8ToGbk(char *src_str, size_t src_len, char *dst_str, size_t dst_len) {
     memset(dst_str, 0, dst_len);
     if (iconv(cd, pin, &src_len, pout, &dst_len) == -1) return -1;
     iconv_close(cd);
-    *pout = '\0';
+    **pout = '\0';
 
     return 0;
 }
@@ -74,7 +74,7 @@ int Utf8ToGbk(char *src_str, size_t src_len, char *dst_str, size_t dst_len) {
 #endif
 
 int main(void) {
-    char* src_str = "ÆÏÌÑÃÀ¾ÆÒ¹¹â±­";
+    char* src_str = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò¹ï¿½â±­";
     cout << "origin string: " << src_str << endl;
 
 #ifdef _WIN32
